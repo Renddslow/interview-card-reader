@@ -38,7 +38,7 @@ test('getInvalidLogs - returns faulty exits and entries when present', (t) => {
     ['Paul', 'exit'],
     ['Mary', 'enter'],
     ['Mary', 'exit'],
-    ['Cuthbert', 'exit'],
+    ['Ignatius', 'exit'],
     ['Benedict', 'enter'],
     ['Benedict', 'enter'],
     ['Benedict', 'exit'],
