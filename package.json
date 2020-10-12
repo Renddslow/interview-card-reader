@@ -8,7 +8,8 @@
   "author": "Matt McElwee <mubatt@wyopub.com>",
   "main": "index.js",
   "scripts": {
-    "test": "ava --verbose"
+    "test": "ava --verbose",
+    "start": "ava --verbose"
   },
   "husky": {
     "hooks": {

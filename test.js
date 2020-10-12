@@ -46,7 +46,10 @@ test('getInvalidLogs - returns faulty exits and entries when present', (t) => {
     ['Mary', 'exit'],
     ['Ignatius', 'enter'],
   ];
-  const expected = [['Ignatius'], ['Paul', 'Ignatius', 'Benedict']];
+  const expected = [
+    ['Ignatius', 'Benedict'],
+    ['Paul', 'Ignatius'],
+  ];
   t.deepEqual(getInvalidLogs(input), expected);
 });
 
