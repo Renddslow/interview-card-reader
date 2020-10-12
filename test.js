@@ -23,13 +23,13 @@ test('getInvalidLogs - returns faulty entries when present', (t) => {
     ['Paul', 'exit'],
     ['Mary', 'enter'],
     ['Mary', 'exit'],
-    ['Cuthbert', 'exit'],
+    ['Gregory', 'exit'],
     ['Mary', 'enter'],
     ['Mary', 'exit'],
-    ['Cuthbert', 'enter'],
-    ['Cuthbert', 'exit'],
+    ['Gregory', 'enter'],
+    ['Gregory', 'exit'],
   ];
-  const expected = [[], ['Paul', 'Cuthbert']];
+  const expected = [[], ['Paul', 'Gregory']];
   t.deepEqual(getInvalidLogs(input), expected);
 });
 
@@ -39,14 +39,14 @@ test('getInvalidLogs - returns faulty exits and entries when present', (t) => {
     ['Mary', 'enter'],
     ['Mary', 'exit'],
     ['Cuthbert', 'exit'],
-    ['Reginald', 'enter'],
-    ['Reginald', 'enter'],
-    ['Reginald', 'exit'],
+    ['Benedict', 'enter'],
+    ['Benedict', 'enter'],
+    ['Benedict', 'exit'],
     ['Mary', 'enter'],
     ['Mary', 'exit'],
-    ['Cuthbert', 'enter'],
+    ['Ignatius', 'enter'],
   ];
-  const expected = [['Cuthbert'], ['Paul', 'Cuthbert', 'Reginald']];
+  const expected = [['Ignatius'], ['Paul', 'Ignatius', 'Benedict']];
   t.deepEqual(getInvalidLogs(input), expected);
 });
 
