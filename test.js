@@ -8,11 +8,11 @@ test('getInvalidLogs - returns an Array', (t) => {
 
 test('getInvalidLogs - returns faulty exits when present', (t) => {
   const input = [
-    ['Paul', 'enter'],
-    ['Mary', 'enter'],
-    ['Mary', 'exit'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Mary', scan: 'enter' },
+    { employee: 'Mary', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
   ];
   const expected = [['Paul'], []];
   const [exit, entry] = getInvalidLogs(input);
@@ -22,14 +22,14 @@ test('getInvalidLogs - returns faulty exits when present', (t) => {
 
 test('getInvalidLogs - returns faulty entries when present', (t) => {
   const input = [
-    ['Paul', 'exit'],
-    ['Mary', 'enter'],
-    ['Mary', 'exit'],
-    ['Gregory', 'exit'],
-    ['Mary', 'enter'],
-    ['Mary', 'exit'],
-    ['Gregory', 'enter'],
-    ['Gregory', 'exit'],
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Mary', scan: 'enter' },
+    { employee: 'Mary', scan: 'exit' },
+    { employee: 'Gregory', scan: 'exit' },
+    { employee: 'Mary', scan: 'enter' },
+    { employee: 'Mary', scan: 'exit' },
+    { employee: 'Gregory', scan: 'enter' },
+    { employee: 'Gregory', scan: 'exit' },
   ];
   const expected = [[], ['Gregory', 'Paul']];
   const [exit, entry] = getInvalidLogs(input);
@@ -39,16 +39,16 @@ test('getInvalidLogs - returns faulty entries when present', (t) => {
 
 test('getInvalidLogs - returns faulty exits and entries when present', (t) => {
   const input = [
-    ['Paul', 'exit'],
-    ['Mary', 'enter'],
-    ['Mary', 'exit'],
-    ['Ignatius', 'exit'],
-    ['Benedict', 'enter'],
-    ['Benedict', 'enter'],
-    ['Benedict', 'exit'],
-    ['Mary', 'enter'],
-    ['Mary', 'exit'],
-    ['Ignatius', 'enter'],
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Mary', scan: 'enter' },
+    { employee: 'Mary', scan: 'exit' },
+    { employee: 'Ignatius', scan: 'exit' },
+    { employee: 'Benedict', scan: 'enter' },
+    { employee: 'Benedict', scan: 'enter' },
+    { employee: 'Benedict', scan: 'exit' },
+    { employee: 'Mary', scan: 'enter' },
+    { employee: 'Mary', scan: 'exit' },
+    { employee: 'Ignatius', scan: 'enter' },
   ];
   const expected = [
     ['Benedict', 'Ignatius'],
@@ -61,10 +61,10 @@ test('getInvalidLogs - returns faulty exits and entries when present', (t) => {
 
 test('getInvalidLogs - returns only one faulty exit per employee when present', (t) => {
   const input = [
-    ['Paul', 'enter'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
   ];
   const expected = [['Paul'], []];
   const [exit, entry] = getInvalidLogs(input);
@@ -74,12 +74,12 @@ test('getInvalidLogs - returns only one faulty exit per employee when present', 
 
 test('getInvalidLogs - returns only one faulty entry per employee when present', (t) => {
   const input = [
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
   ];
   const expected = [[], ['Paul']];
   const [exit, entry] = getInvalidLogs(input);
@@ -89,16 +89,16 @@ test('getInvalidLogs - returns only one faulty entry per employee when present',
 
 test('getInvalidLogs - returns only one faulty entry and exit per employee when present', (t) => {
   const input = [
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
-    ['Paul', 'enter'],
-    ['Paul', 'exit'],
-    ['Paul', 'enter'],
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'enter' },
+    { employee: 'Paul', scan: 'exit' },
+    { employee: 'Paul', scan: 'enter' },
   ];
   const expected = [['Paul'], ['Paul']];
   const [exit, entry] = getInvalidLogs(input);
