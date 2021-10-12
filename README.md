@@ -13,17 +13,14 @@ Our logs are formatted as an Array of scan log objects. Each log contains the em
 ];
 ```
 
-We want to get a tuple where the first item is an Array of employee names whose exits failed to log, and the second item is an Array of employee names whose entries failed to log.
+We want to get a tuple where the first item is an Array of employee names whose entrances failed to log, and the second item is an Array of employee names whose exits failed to log.
 
-```js
-[
-  [
-    /* employees with missing exit log */
-  ],
-  [
-    /* employees with missing entrance log */
-  ],
-];
+```typescript
+type MissingExits = string[];    // Employee names where entrance failed to log
+type MissingEntries = string[];  // Employee names where exit failed to log
+
+// Expected return value
+type Report = [MissingEntries, MissingExits];
 ```
 
 An example would be the case of Paul this morning. He scanned into the room, presumably spent some time in there, and then left. However, his exit did not log.
@@ -41,7 +38,7 @@ An example would be the case of Paul this morning. He scanned into the room, pre
 Given this log, we would want to return a tuple that looks like this:
 
 ```js
-[['Paul'], []];
+[[], ['Paul']];
 ```
 
 Importantly, the room is physically empty at the start and end of the day. So we can be certain that if a person's first entry is an `exit` or last entry is an `enter` that they are missing a log.

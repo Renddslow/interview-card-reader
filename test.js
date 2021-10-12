@@ -14,9 +14,9 @@ test('getInvalidLogs - returns faulty exits when present', (t) => {
     { employee: 'Paul', scan: 'enter' },
     { employee: 'Paul', scan: 'exit' },
   ];
-  const expected = [['Paul'], []];
-  const [exit, entry] = getInvalidLogs(input);
-  const actual = [exit.sort(), entry.sort()];
+  const expected = [[], ['Paul']];
+  const [entry, exit] = getInvalidLogs(input);
+  const actual = [entry.sort(), exit.sort()];
   t.deepEqual(actual, expected);
 });
 
@@ -31,9 +31,9 @@ test('getInvalidLogs - returns faulty entries when present', (t) => {
     { employee: 'Gregory', scan: 'enter' },
     { employee: 'Gregory', scan: 'exit' },
   ];
-  const expected = [[], ['Gregory', 'Paul']];
-  const [exit, entry] = getInvalidLogs(input);
-  const actual = [exit.sort(), entry.sort()];
+  const expected = [['Gregory', 'Paul'], []];
+  const [entry, exit] = getInvalidLogs(input);
+  const actual = [entry.sort(), exit.sort()];
   t.deepEqual(actual, expected);
 });
 
@@ -51,11 +51,11 @@ test('getInvalidLogs - returns faulty exits and entries when present', (t) => {
     { employee: 'Ignatius', scan: 'enter' },
   ];
   const expected = [
-    ['Benedict', 'Ignatius'],
     ['Ignatius', 'Paul'],
+    ['Benedict', 'Ignatius']
   ];
-  const [exit, entry] = getInvalidLogs(input);
-  const actual = [exit.sort(), entry.sort()];
+  const [entry, exit] = getInvalidLogs(input);
+  const actual = [entry.sort(), exit.sort()];
   t.deepEqual(actual, expected);
 });
 
@@ -66,9 +66,9 @@ test('getInvalidLogs - returns only one faulty exit per employee when present', 
     { employee: 'Paul', scan: 'exit' },
     { employee: 'Paul', scan: 'enter' },
   ];
-  const expected = [['Paul'], []];
-  const [exit, entry] = getInvalidLogs(input);
-  const actual = [exit.sort(), entry.sort()];
+  const expected = [[], ['Paul']];
+  const [entry, exit] = getInvalidLogs(input);
+  const actual = [entry.sort(), exit.sort()];
   t.deepEqual(actual, expected);
 });
 
@@ -81,9 +81,9 @@ test('getInvalidLogs - returns only one faulty entry per employee when present',
     { employee: 'Paul', scan: 'enter' },
     { employee: 'Paul', scan: 'exit' },
   ];
-  const expected = [[], ['Paul']];
-  const [exit, entry] = getInvalidLogs(input);
-  const actual = [exit.sort(), entry.sort()];
+  const expected = [['Paul'], []];
+  const [entry, exit] = getInvalidLogs(input);
+  const actual = [entry.sort(), exit.sort()];
   t.deepEqual(actual, expected);
 });
 
@@ -101,7 +101,7 @@ test('getInvalidLogs - returns only one faulty entry and exit per employee when 
     { employee: 'Paul', scan: 'enter' },
   ];
   const expected = [['Paul'], ['Paul']];
-  const [exit, entry] = getInvalidLogs(input);
-  const actual = [exit.sort(), entry.sort()];
+  const [entry, exit] = getInvalidLogs(input);
+  const actual = [entry.sort(), exit.sort()];
   t.deepEqual(actual, expected);
 });
