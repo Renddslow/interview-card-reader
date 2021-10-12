@@ -18,10 +18,10 @@ We want to get a tuple where the first item is an Array of employee names whose 
 ```js
 [
   [
-    /* exits */
+    /* employees with missing exit log */
   ],
   [
-    /* entries */
+    /* employees with missing entrance log */
   ],
 ];
 ```
@@ -46,4 +46,4 @@ Given this log, we would want to return a tuple that looks like this:
 
 Importantly, the room is physically empty at the start and end of the day. So we can be certain that if a person's first entry is an `exit` or last entry is an `enter` that they are missing a log.
 
-Since we are really just trying to debug a hardware problem, we don't need a verbose list of every bad record. Rather, we want a list of bad exits and entries where an employee **appears only once** in each list. If Paul has multiple bad entries, he should only appear once in the `badEntries` Array. However, if he had a bad entry **and** bad exit, he should appear only once in both Arrays.
+Since we are really just trying to debug a hardware problem, we don't need an exhaustive list of every missing log. Rather, we want a list of missing exits and missing entries where an employee **appears only once** in each list. If Paul has multiple missing entry logs, he should only appear once in the `missingEntries` Array. However, if he had a missing entry **and** a missing exit, he should appear once in both Arrays.
